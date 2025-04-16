@@ -26,6 +26,10 @@ export const HeaderFragment = graphql(`
         children {
           name
           path
+          children {
+            name
+            path
+          }
         }
       }
     }

@@ -107,6 +107,14 @@ async function getSubCategoriesFilters(props: Props): Promise<Filter[]> {
       links: categoryTree.children.map((category) => ({
         label: category.name,
         href: category.path,
+        subLinks: category.children.map((category2) => ({
+          label: category2.name,
+          href: category2.path,
+          subSubLinks: category2.children.map((category3) => ({
+            label: category3.name,
+            href: category3.path,
+          }))
+        })),
       })),
     },
   ];

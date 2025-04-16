@@ -129,6 +129,7 @@ export const Reviews = async ({ productId, searchParams }: Props) => {
   return (
     <>
       <ReviewsSection
+        productId={productId}
         averageRating={getAverageRating(productId)}
         emptyStateMessage={t('empty')}
         nextLabel={t('Pagination.next')}

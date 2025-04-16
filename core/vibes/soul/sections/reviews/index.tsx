@@ -2,6 +2,9 @@ import { Stream, Streamable } from '@/vibes/soul/lib/streamable';
 import { CursorPagination, CursorPaginationInfo } from '@/vibes/soul/primitives/cursor-pagination';
 import { Rating } from '@/vibes/soul/primitives/rating';
 import { StickySidebarLayout } from '@/vibes/soul/sections/sticky-sidebar-layout';
+import { Button } from '../../primitives/button';
+import ReviewsWithForm from '~/app/[locale]/(default)/product/[slug]/_components/product-create-review/reviews-with-form';
+import { Suspense } from 'react';
 
 interface Review {
   id: string;
@@ -12,6 +15,7 @@ interface Review {
 }
 
 interface Props {
+  productId:number;
   reviews: Streamable<Review[]>;
   averageRating: Streamable<number>;
   totalCount?: Streamable<number>;
@@ -23,6 +27,7 @@ interface Props {
 }
 
 export function Reviews({
+  productId,
   reviews: streamableReviews,
   averageRating: streamableAverageRating,
   totalCount: streamableTotalCount,
@@ -42,7 +47,14 @@ export function Reviews({
           <StickySidebarLayout
             sidebar={
               <>
-                <Stream
+ <div className="my-8">
+        <ReviewsWithForm productId={productId} />
+        <Suspense fallback={<div>Loading reviews...</div>}>
+          <Reviews 
+            productId={productId} 
+          />
+        </Suspense>
+      </div>                <Stream
                   fallback={
                     <div className="animate-pulse">
                       <h2 className="mb-4 mt-0 text-xl font-medium @xl:my-5 @xl:text-2xl">
@@ -123,6 +135,7 @@ export function ReviewsEmptyState({
     <StickySidebarLayout
       sidebar={
         <>
+          <Button>Write a review</Button>
           <h2 className="mb-4 mt-0 text-xl font-medium @xl:my-5 @xl:text-2xl">
             {reviewsLabel} <span className="text-contrast-300">0</span>
           </h2>

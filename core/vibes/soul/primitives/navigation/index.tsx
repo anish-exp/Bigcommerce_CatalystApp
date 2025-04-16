@@ -38,6 +38,10 @@ interface Link {
     links: Array<{
       label: string;
       href: string;
+      subLinks: Array<{
+        label: string;
+        href: string;
+      }>;
     }>;
   }>;
 }
@@ -479,11 +483,26 @@ export const Navigation = forwardRef(function Navigation<S extends SearchResult>
                               // Third Level Links
                               <li key={idx}>
                                 <Link
-                                  className="block rounded-lg bg-[var(--nav-sub-link-background,transparent)] px-3 py-1.5 font-[family-name:var(--nav-sub-link-font-family,var(--font-family-body))] text-sm font-medium text-[var(--nav-sub-link-text,hsl(var(--contrast-500)))] ring-[var(--nav-focus,hsl(var(--primary)))] transition-colors hover:bg-[var(--nav-sub-link-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-sub-link-text-hover,hsl(var(--foreground)))] focus-visible:outline-0 focus-visible:ring-2"
+                                  className="block rounded-lg bg-[var(--nav-sub-link-background,transparent)] px-3 py-1.5 font-[family-name:var(--nav-sub-link-font-family,var(--font-family-body))] text-sm font-medium text-[var(--nav-sub-link-text,hsl(var(--contrast-600)))] ring-[var(--nav-focus,hsl(var(--primary)))] transition-colors hover:bg-[var(--nav-sub-link-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-sub-link-text-hover,hsl(var(--foreground)))] focus-visible:outline-0 focus-visible:ring-2"
                                   href={link.href}
                                 >
                                   {link.label}
                                 </Link>
+                                {link.subLinks && link.subLinks.length > 0 && ( 
+                                //Fourth Level Links
+                                  <ul>
+                                    {link.subLinks.map((subLink, subIdx) => ( 
+                                      <li key={subIdx}> 
+                                        <Link
+                                          className="block rounded-lg bg-[var(--nav-sub-sublink-background,transparent)] px-4 py-1.5 font-[family-name:var(--nav-sub-sublink-font-family,var(--font-family-body))] text-sm font-small text-[var(--nav-sub-sublink-text,hsl(var(--contrast-500)))] ring-[var(--nav-focus,hsl(var(--primary)))] transition-colors hover:bg-[var(--nav-sub-sublink-background-hover,hsl(var(--contrast-100)))] hover:text-[var(--nav-sub-sublink-text-hover,hsl(var(--foreground)))] focus-visible:outline-0 focus-visible:ring-2"
+                                          href={subLink.href}
+                                        >
+                                          {subLink.label}
+                                        </Link>
+                                      </li>
+                                    ))} 
+                                  </ul>
+                                )} 
                               </li>
                             ))}
                           </ul>

@@ -61,6 +61,10 @@ const getLinks = async () => {
       links: firstChild.children.map((secondChild) => ({
         label: secondChild.name,
         href: secondChild.path,
+        subLinks: secondChild.children.map((thirdChild) => ({
+          label: thirdChild.name,
+          href: thirdChild.path,
+        }))
       })),
     })),
   }));

@@ -23,7 +23,18 @@ import { getFilterParsers } from './filter-parsers';
 export interface LinkGroupFilter {
   type: 'link-group';
   label: string;
-  links: Array<{ label: string; href: string }>;
+  links: Array<{ 
+    label: string; 
+    href: string;
+    subLinks: Array<{
+      label: string; 
+      href: string;
+      subSubLinks: Array<{
+        label: string; 
+        href: string
+      }>;
+    }>;
+  }>;
 }
 
 export interface ToggleGroupFilter {
@@ -138,14 +149,38 @@ export function FiltersPanelInner({
           <h3 className="py-4 font-mono text-sm uppercase text-contrast-400">{linkGroup.label}</h3>
           <ul>
             {linkGroup.links.map((link, linkIndex) => (
-              <li className="py-2" key={linkIndex.toString()}>
-                <Link
-                  className="font-body text-base font-medium text-contrast-500 transition-colors duration-300 ease-out hover:text-foreground"
-                  href={link.href}
-                >
-                  {link.label}
-                </Link>
-              </li>
+              <>
+                <li className="py-2" key={linkIndex.toString()}>
+                  <Link
+                    className="font-body text-base font-medium text-contrast-500 transition-colors duration-300 ease-out hover:text-foreground"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+                {link.subLinks.map((subLink, subLinkIndex) => (
+                  <>
+                    <li className="py-2" key={subLinkIndex.toString()}>
+                      <Link
+                        className="font-body text-base font-medium text-contrast-500 transition-colors duration-300 ease-out hover:text-foreground"
+                        href={subLink.href}
+                      >
+                        {subLink.label}
+                      </Link>
+                    </li>
+                    {subLink.subSubLinks.map((subSubLink, subSubLinkIndex) => (
+                      <li className="py-2" key={subSubLinkIndex.toString()}>
+                        <Link
+                          className="font-body text-base font-medium text-contrast-500 transition-colors duration-300 ease-out hover:text-foreground"
+                          href={subSubLink.href}
+                        >
+                          {subSubLink.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </>
+                ))}
+              </>
             ))}
           </ul>
         </div>

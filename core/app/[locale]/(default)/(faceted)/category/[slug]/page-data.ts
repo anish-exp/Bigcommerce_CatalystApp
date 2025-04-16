@@ -32,6 +32,12 @@ const CategoryPageQuery = graphql(
               entityId
               name
               path
+              children {
+                entityId
+                name
+                path
+                
+              }
             }
           }
         }

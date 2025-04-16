@@ -7,6 +7,7 @@ import { Image } from '~/components/image';
 import { Link } from '~/components/link';
 
 import { Compare } from './compare';
+import { Button } from '~/components/ui/button';
 
 export interface CardProduct {
   id: string;
@@ -53,7 +54,7 @@ export function ProductCard({
   product: { id, title, subtitle, badge, price, image, href },
   colorScheme = 'light',
   className,
-  showCompare = false,
+  showCompare = true,
   aspectRatio = '5:6',
   compareLabel,
   compareParamName,
@@ -149,6 +150,8 @@ export function ProductCard({
             {price != null && <PriceLabel colorScheme={colorScheme} price={price} />}
           </Link>
         </div>
+
+        <Button> add to cart </Button>
 
         {showCompare && (
           <div className="mt-0.5 shrink-0">

@@ -119,6 +119,9 @@ export default async function RootLayout({ params, children }: Props) {
             </NuqsAdapter>
           </NextIntlClientProvider>
           <VercelComponents />
+
+          <script type="text/javascript" async src="//l.getsitecontrol.com/v7nd582w.js"></script>
+                    
         </body>
       </html>
     </MakeswiftProvider>
