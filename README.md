@@ -1,3 +1,6 @@
+# Bigcommerce_CatalystApp
+Custom changes made to Catalyst:  Getsitecontrol integration, Added 4th level child in sub menu, Added sub child in filters, External GrahQL integration
+
 <a href="https://catalyst.dev" target="_blank" rel="noopener norerrer">
   <img src="https://storage.googleapis.com/bigcommerce-developers/images/catalyst_readme_banner.png" alt="Catalyst for Composable Commerce Image Banner" title="Catalyst">
 </a>
